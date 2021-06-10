@@ -1,7 +1,7 @@
 # Robot car with microcontroller
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/62313672/121588662-90a3bc00-ca0c-11eb-8f45-8ebb86218a8b.gif" width="90%">
+  <img src="https://user-images.githubusercontent.com/62313672/121588662-90a3bc00-ca0c-11eb-8f45-8ebb86218a8b.gif">
 </p>
 
 </br>
@@ -49,7 +49,7 @@ In consequence of the coronavirus pandemic we ended up using an online platform 
 Here is the digital version of the project using TinkerCad:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/62313672/121540805-2889b180-c9dd-11eb-929f-95f1e17cdf27.png" width="70%">
+  <img src="https://user-images.githubusercontent.com/62313672/121540805-2889b180-c9dd-11eb-929f-95f1e17cdf27.png">
 </p>
 
 On [TinkerCad](https://www.tinkercad.com/) we were able to send commands and see responses through a monitor and also simulate an object in front of the sensor, being able to change its position and see the distance computed simultaneously.
