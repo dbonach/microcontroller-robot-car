@@ -96,6 +96,9 @@ volatile unsigned char flag = 1;
 - Distancia maxima de 336cm eh para gerar 391 interrupcoes, intervalo do led de 2s. 
 - Distancia de 10cm eh para gerar 11 interrupcoes, intervalo do led de 0,06s. */
 unsigned int multiplicador = 80;
+
+/* Flag that shows if the car is going forward  */
+unsigned int forward = 0;
  
 
 /* Configuracao do sinal PWM gerado. */
@@ -592,34 +595,15 @@ void conversao(void)
 /* Funcao para alterar o modo de operacao dos motores. */
 void comandoMotores(void)
 {
-    /* Comando para frente */
-    /* Caso o comando 'e' esteja a ativo e o comando para frente,
-       a condição também será avaliada. */
-    if (caractere == 'w' || caractere == 'e' && (PORTC & ~0x1E))
-    {
-        /* caso a distancia for menor ou igual a 10cm, os motores devem parar e nao executar o comando para frente.
-           Os outros comando podem ser executados normalmente. */
-        if (obstaculo) {
-            /* A1, A2, A3 e A4 em nivel baixo */
-            PORTC &= ~0x1E;
-        }
-        /* Caso contrario, executa normalmente o comando de se movimentar para frente. */
-        else {
-            /* Anula o comando anterior zerando o bits PC1, PC2, PC3 E PC4. */
-            PORTC &= ~0x1E;
-
-            /* A1 e A3 em nivel alto*/
-            PORTC |= 10;
-        }
-    }
-
     /* Para tras */
-    else if (caractere == 's')
+    if (caractere == 's')
     {
         PORTC &= ~0x1E;
 
         /* A2 e A4 em nivel alto */
         PORTC |= 20;
+
+        forward = 0;
     }
 
     /* Anti-horario */
@@ -629,6 +613,8 @@ void comandoMotores(void)
 
         /* A1 e A4 em nivel alto */
         PORTC |= 18;
+
+        forward = 0;
     }
 
     /* Horario */
@@ -638,6 +624,8 @@ void comandoMotores(void)
 
         /* A2 e A3 em nivel alto */
         PORTC |= 12;
+
+        forward = 0;
     }
 
     /* Parado */
@@ -645,6 +633,8 @@ void comandoMotores(void)
     {
         /* A1, A2, A3 e A4 em nivel baixo */
         PORTC &= ~0x1E;
+
+        forward = 0;
     }
 
     /* Duty-cycle em 60% */
@@ -663,5 +653,28 @@ void comandoMotores(void)
     else if (caractere == '0')
     {
         OCR2B = 255;
+    }
+
+    /* Comando para frente */
+    if (caractere == 'w' || forward)
+    {
+        /* caso a distancia for menor ou igual a 10cm, os motores devem parar e nao executar o comando para frente.
+           Os outros comando podem ser executados normalmente. */
+        if (obstaculo) {
+            /* A1, A2, A3 e A4 em nivel baixo */
+            PORTC &= ~0x1E;
+        }
+        /* Caso contrario, executa normalmente o comando de se movimentar para frente. */
+        else {
+            /* Anula o comando anterior zerando o bits PC1, PC2, PC3 E PC4. */
+            PORTC &= ~0x1E;
+
+            /* A1 e A3 em nivel alto*/
+            PORTC |= 10;
+        }
+
+        forward = 1;
+
+        return;
     }
 }
