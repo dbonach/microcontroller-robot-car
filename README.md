@@ -49,7 +49,7 @@ In consequence of the coronavirus pandemic we ended up using an online platform 
 Here is the digital version of the project using TinkerCad:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/62313672/121540805-2889b180-c9dd-11eb-929f-95f1e17cdf27.png">
+  <img src="https://user-images.githubusercontent.com/62313672/121540805-2889b180-c9dd-11eb-929f-95f1e17cdf27.png" width="90%">
 </p>
 
 On [TinkerCad](https://www.tinkercad.com/) we were able to send commands and see responses through a monitor and also simulate an object in front of the sensor, being able to change its position and see the distance computed simultaneously.
